@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "silvana",
+    "password": null,
+    "database": "resumedb",
+    "host": "127.0.0.1",
+    "dialect": "postgresql"
+  },
+  "test": {
+    "username": "silvana",
+    "password": null,
+    "database": "resumedb",
+    "host": "127.0.0.1",
+    "dialect": "postgresql"
+  },
+  "production": {
+    "username": "silvana",
+    "password": null,
+    "database": "resumedb",
+    "host": "127.0.0.1",
+    "dialect": "postgresql"
+  }
+}
