@@ -1,3 +1,4 @@
+
 var express = require('express');
 var router = express.Router();
 
@@ -170,20 +171,41 @@ router.post('/educations', function(req, res) {
     router.get('/skills', function(req, res) {
       models.Skill.findAll({
         include: [models.User]
-      }).then(function(skill) {
-        res.json(skill);
+      }).then(function(skills) {
+        res.render('skills/index', {skills:skills});
       });
     });
+
+
 
     // add new skill
     router.post('/skills', function(req, res) {
       models.Skill.create({
         name: req.body.name,
         type: req.body.type,
-        levelOfProficiency: req.body.levelOfProficiency,
-        UserId: req.body.UserId
+        levelOfProficiency: req.body.levelOfProficiency
       }).then(function(skill) {
         res.json(skill);
+      });
+    });
+
+    //go to add new skill page
+    router.get('/getform', function(req,res){
+      models.Skill.findAll({
+        include: [models.User]
+      }).then(function(skills){
+        res.render('skills/new',{skills:skills});
+      });
+    });
+
+    // add new skill
+    router.post('/newskill', function(req, res) {
+      models.Skill.create({
+        name: req.body.test,
+        type: req.body.type,
+        levelOfProficiency: req.body.levelOfProficiency
+      }).then(function(skill) {
+        res.redirect('/skills');
       });
     });
 
@@ -226,5 +248,34 @@ router.post('/educations', function(req, res) {
           }
         }).then(function(skill){
           res.json(skill)
+        })
+      })
+
+      //get skill-users
+      router.get('/skillusers', function(req, res){
+        models.SkillUser.findAll({
+          include: [models.Skill, models.User]
+        }).then(function(skillusers){
+          res.json(skillusers)
+        })
+      })
+
+      //add new skilluser
+      router.post('/skillusers', function(req, res){
+        models.SkillUser.create({
+          SkillId: req.body.SkillId,
+          UserId: req.body.UserId
+        }).then(function(skilluser){
+          res.json(skilluser)
+        })
+      })
+
+
+      //test
+      router.get('/test', function(req, res){
+        models.SkillUser.findAll({
+          include: [models.Skill, models.User]
+        }).then(function(skillusers){
+          res.render('test', {skillusers: skillusers})
         })
       })

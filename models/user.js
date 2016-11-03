@@ -13,8 +13,8 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         User.hasMany(models.Education);
         User.hasMany(models.Work);
-        User.hasMany(models.Skill);
-
+        User.hasMany(models.SkillUser);
+        User.belongsToMany(models.Skill, {through: models.SkillUser});
       }
     }
   });

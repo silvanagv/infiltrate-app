@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Education.belongsTo(models.User,
-          {foreignKey: 'UserId'});
+        Education.belongsTo(models.User, {foreignKey: 'UserId'});
       }
     }
   });

@@ -3,12 +3,12 @@ module.exports = function(sequelize, DataTypes) {
   var Skill = sequelize.define('Skill', {
     name: DataTypes.STRING,
     type: DataTypes.STRING,
-    levelOfProficiency: DataTypes.STRING,
-    UserId: DataTypes.INTEGER
-  }, {
+    levelOfProficiency: DataTypes.STRING
+    }, {
     classMethods: {
       associate: function(models) {
-        Skill.belongsTo(models.User, {foreignKey: 'UserId'});
+        Skill.hasMany(models.SkillUser);
+        Skill.belongsToMany(models.User, {through: models.SkillUser});
       }
     }
   });
