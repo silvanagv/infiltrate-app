@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Resume App' });
@@ -276,6 +277,6 @@ router.post('/educations', function(req, res) {
         models.SkillUser.findAll({
           include: [models.Skill, models.User]
         }).then(function(skillusers){
-          res.render('test', {skillusers: skillusers})
+          res.json(skillusers)
         })
       })
