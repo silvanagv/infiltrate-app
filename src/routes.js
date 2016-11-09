@@ -8,6 +8,11 @@ import NotFound from './components/NotFound';
 import CreateUser from './components/Users/CreateUser';
 import ShowUser from './components/Users/ShowUser';
 
+import CreateWork from './components/Resumes/CreateWork';
+import CreateEducation from './components/Resumes/CreateEducation';
+import CreateSkill from './components/Resumes/CreateSkill';
+
+
 import CreateResume from './components/Resumes/CreateResume';
 import ShowResume from './components/Resumes/ShowResume';
 import UpdateResume from './components/Resumes/UpdateResume';
@@ -25,6 +30,11 @@ export default(
     <Route path="/about" component={About} />
     <Route path="/signup" component={CreateUser} />
     <Route path="/users/:id" component={ShowUser} />
+
+    <Route path="/jobs/new" component={CreateWork} />
+    <Route path="/skills/new" component={CreateSkill} />
+    <Route path="/educations/new" component={CreateEducation} />
+
 
     <Route path="/resumes/new" component={CreateResume} />
     <Route path="/resumes/:id" component={ShowResume} />

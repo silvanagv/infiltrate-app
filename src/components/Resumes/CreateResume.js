@@ -54,13 +54,20 @@ class CreateResume extends React.Component {
   render() {
     return (
       <div className="tiny">
-        <h2>Create Skill</h2>
-        <form onSubmit={this.newSkillHandler}>
-          <input ref="name" />
-          <input ref="type" />
-          <input ref="levelOfProficiency" />
-          <input type='submit'/>
-        </form>
+
+<div><h2>Create Work</h2>
+<form onSubmit={this.newWorkHandler}>
+  <input ref="title" placeholder="Title"/>
+  <input ref="company" placeholder="Company" />
+  <input ref="companyUrl" placeholder="Company Website" />
+  <input ref="responsibilities" placeholder="Responsibilities" />
+  <input ref="UserId" type="number" placeholder="UserId" />
+  <input type="date" ref="startDate" placeholder="Start Date" />
+  <input type="date" ref="endDate" placeholder="End Date" />
+  <input type='submit'/>
+</form></div>
+
+
         <h2>Create Education</h2>
         <form onSubmit={this.newEducationHandler}>
           <input ref="institutionName" placeholder="Name of Institution"/>
@@ -69,15 +76,12 @@ class CreateResume extends React.Component {
           <input type="date" ref="endDate" placeholder="End Date" />
           <input type='submit'/>
         </form>
-        <h2>Create Work</h2>
-        <form onSubmit={this.newWorkHandler}>
-          <input ref="title" placeholder="Title"/>
-          <input ref="company" placeholder="Company" />
-          <input ref="companyUrl" placeholder="Company Website" />
-          <input ref="responsibilities" placeholder="Responsibilities" />
-          <input ref="UserId" type="number" placeholder="UserId" />
-          <input type="date" ref="startDate" placeholder="Start Date" />
-          <input type="date" ref="endDate" placeholder="End Date" />
+
+        <h2>Create Skill</h2>
+        <form onSubmit={this.newSkillHandler}>
+          <input ref="name" />
+          <input ref="type" />
+          <input ref="levelOfProficiency" />
           <input type='submit'/>
         </form>
     </div>

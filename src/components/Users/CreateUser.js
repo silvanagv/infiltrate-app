@@ -2,6 +2,7 @@ import React from 'react';
 import * as actions from '../../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import {Link} from 'react-router';
 
 import './style.css';
 
@@ -30,7 +31,7 @@ class CreateUser extends React.Component {
     return (
       <div>
         <h1>
-          Create Skill
+          Sign Up
         </h1>
         <form onSubmit={this.newUserHandler}>
           <input ref="name" type="text" placeholder="name"/>
