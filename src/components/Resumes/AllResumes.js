@@ -1,42 +1,53 @@
 import React, { Component } from 'react';
+import * as actions from '../../actions';
+import  { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import {Link} from 'react-router';
 
 import './style.css';
 
 class AllResumes extends Component {
   constructor(props){
     super(props)
-    this.makeJobs = this.makeJobs.bind(this)
   }
 
   getWorkHistory(){
-    let things = ""
-  let works = fetch('http://localhost:3000/users')
-  .then(response => response.json())
-  .then(function(data){
-    return data.map(function(user){
-      return user})
-  }).then(stuff => <h1>{this.makeJobs(stuff)}</h1>)
+  return this.props.works.map(work => <div key={work.id}><a href={work.companyUrl}><h3>{work.company}</h3></a><p>{work.responsibilities}</p></div>)
+  }
 
-}
-makeJobs(json){
- return json.map(user => console.log(<div>{user.name}</div>))
-}
-  static propTypes = {}
-  static defaultProps = {}
-  state = {}
+  getEducationHistory(){
+    return this.props.educations.map(education => <div key={education.id}>{education.institutionName}</div>)
+  }
+
+  getSkills(){
+  return this.props.skills.map(skill => <div key={skill.id}>{skill.name}</div>)
+  }
 
   render() {
     return (
       <div>
-        <h1>
-          All Resumes
-        </h1>
-        <div>{this.getWorkHistory()}
-        </div>
+        <h2> Jobs</h2>
+        <div>{this.getWorkHistory()}</div>
+        <h2> Education</h2>
+        <div>{this.getEducationHistory()}</div>
+        <h2> Skills</h2>
+        <div>{this.getSkills()}</div>
 
       </div>
     );
   }
 }
 
-export default AllResumes;
+
+function mapStateToProps(state){
+  return {
+    works: state.works,
+    skills: state.skills,
+    educations: state.educations
+    }
+}
+
+
+const componentCreator = connect(mapStateToProps)
+
+export default componentCreator(AllResumes);

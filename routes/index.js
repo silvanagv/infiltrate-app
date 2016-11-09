@@ -14,15 +14,7 @@ var models = require('../models/index')
 
 //create user
 router.post('/users', function(req, res) {
-  models.User.create({
-    name: req.body.name,
-    email: req.body.email,
-    phone: req.body.phone,
-    website: req.body.website,
-    blog: req.body.blog,
-    linkedin: req.body.linkedin,
-    github: req.body.github
-  }).then(function(user) {
+  models.User.create(req.body.user).then(function(user) {
     res.json(user);
   });
 });
@@ -47,13 +39,7 @@ router.get('/educations', function(req, res) {
 
 // add new education record
 router.post('/educations', function(req, res) {
-  models.Education.create({
-    institutionName: req.body.institutionName,
-    qualification: req.body.qualification,
-    startDate: req.body.startDate,
-    endDate: req.body.endDate,
-    UserId: req.body.UserId
-  }).then(function(education) {
+  models.Education.create(req.body.education).then(function(education) {
     res.json(education);
   });
 });
@@ -112,14 +98,7 @@ router.post('/educations', function(req, res) {
 
   // add new work record
   router.post('/works', function(req, res) {
-    models.Work.create({
-      company: req.body.company,
-      companyUrl: req.body.companyUrl,
-      startDate: req.body.startDate,
-      endDate: req.body.endDate,
-      responsibilities: req.body.responsibilities,
-      UserId: req.body.UserId
-    }).then(function(work) {
+    models.Work.create(req.body.work).then(function(work) {
       res.json(work);
     });
   });
@@ -173,40 +152,15 @@ router.post('/educations', function(req, res) {
       models.Skill.findAll({
         include: [models.User]
       }).then(function(skills) {
-        res.render('skills/index', {skills:skills});
+        res.json(skills);
       });
     });
-
 
 
     // add new skill
     router.post('/skills', function(req, res) {
-      models.Skill.create({
-        name: req.body.name,
-        type: req.body.type,
-        levelOfProficiency: req.body.levelOfProficiency
-      }).then(function(skill) {
+      models.Skill.create(req.body.skill).then(function(skill) {
         res.json(skill);
-      });
-    });
-
-    //go to add new skill page
-    router.get('/getform', function(req,res){
-      models.Skill.findAll({
-        include: [models.User]
-      }).then(function(skills){
-        res.render('skills/new',{skills:skills});
-      });
-    });
-
-    // add new skill
-    router.post('/newskill', function(req, res) {
-      models.Skill.create({
-        name: req.body.test,
-        type: req.body.type,
-        levelOfProficiency: req.body.levelOfProficiency
-      }).then(function(skill) {
-        res.redirect('/skills');
       });
     });
 
@@ -268,15 +222,5 @@ router.post('/educations', function(req, res) {
           UserId: req.body.UserId
         }).then(function(skilluser){
           res.json(skilluser)
-        })
-      })
-
-
-      //test
-      router.get('/test', function(req, res){
-        models.SkillUser.findAll({
-          include: [models.Skill, models.User]
-        }).then(function(skillusers){
-          res.json(skillusers)
         })
       })

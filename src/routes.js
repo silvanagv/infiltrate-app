@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 
 import App from './components/App';
 import About from './components/About';
@@ -14,13 +14,15 @@ import UpdateResume from './components/Resumes/UpdateResume';
 import DeleteResume from './components/Resumes/DeleteResume';
 import AllResumes from './components/Resumes/AllResumes';
 
+import RootPath from './components/Root';
 
 
-const Routes = (props) => (
-  <Router {...props}>
-    <Route path="/" component={App} />
+
+export default(
+  <Route path="/" component={App} >
+    <IndexRoute component={RootPath}/>
+
     <Route path="/about" component={About} />
-
     <Route path="/signup" component={CreateUser} />
     <Route path="/users/:id" component={ShowUser} />
 
@@ -30,11 +32,7 @@ const Routes = (props) => (
     <Route path="/resume/:id" component={DeleteResume} />
     <Route path="/resumes" component={AllResumes} />
 
-
-
     <Route path="*" component={NotFound} />
 
-  </Router>
+</Route>
 );
-
-export default Routes;
