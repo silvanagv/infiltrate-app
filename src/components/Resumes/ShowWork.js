@@ -39,7 +39,7 @@ class AllResumes extends Component {
 function mapStateToProps(state, ownProps){
   if (state.works.length > 0){
     const work = state.works.find((work) => {
-      return work.id == ownProps.params.id
+      return parseInt(work.id, 10) === parseInt(ownProps.params.id, 10)
     })
     return {work: work}
   } else {

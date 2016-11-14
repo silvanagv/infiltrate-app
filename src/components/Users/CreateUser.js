@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as actions from '../../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { browserHistory, Link} from 'react-router';
+import { browserHistory } from 'react-router';
 import './style.css';
 
 class CreateUser extends Component {

@@ -43,7 +43,7 @@ class AllResumes extends Component {
 
           <h2>Update Job</h2>
           <form onSubmit={this.updateWorkHandler}>
-            <input ref="title" value={this.props.work.title}/>
+            <input ref="title" placeholder="Title"/>
             <input ref="company" placeholder={this.props.work.company} />
             <input ref="companyUrl" placeholder="Company Website" />
             <input ref="responsibilities" placeholder="Responsibilities" />
@@ -61,7 +61,7 @@ class AllResumes extends Component {
 function mapStateToProps(state, ownProps){
   if (state.works.length > 0){
     const work = state.works.find((work) => {
-      return work.id == ownProps.params.id
+      return parseInt(work.id, 10) === parseInt(ownProps.params.id, 10)
     })
     return {work: work}
   } else {

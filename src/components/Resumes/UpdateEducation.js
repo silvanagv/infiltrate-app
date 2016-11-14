@@ -40,9 +40,9 @@ class AllResumes extends Component {
           <h2>Update Education</h2>
           <form onSubmit={this.updateEducationHandler}>
             <input ref="institutionName" placeholder="Name of Institution"/>
-            <input ref="qualification" placeholder="Qualification" value={this.props.education.qualification}/>
+            <input ref="qualification" placeholder="Qualification" />
             <input type="date" ref="startDate" placeholder="Start Date" required/>
-            <input type="date" ref="endDate" placeholder="End Date" value={this.props.education.startDate} required/>
+            <input type="date" ref="endDate" placeholder="End Date" required/>
             <input type='submit'/>
           </form>
       </div>
@@ -53,7 +53,7 @@ class AllResumes extends Component {
 function mapStateToProps(state, ownProps){
   if (state.educations.length > 0){
     const education = state.educations.find((education) => {
-      return education.id == ownProps.params.id
+      return parseInt(education.id, 10) === parseInt(ownProps.params.id, 10)
     })
     return {education: education}
   } else {

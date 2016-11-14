@@ -39,7 +39,7 @@ class ShowSkill extends Component {
 function mapStateToProps(state, ownProps){
   if (state.skills.length > 0){
     const skill = state.skills.find((skill) => {
-      return skill.id == ownProps.params.id
+      return parseInt(skill.id, 10) === parseInt(ownProps.params.id, 10)
     })
     return {skill: skill}
   } else {

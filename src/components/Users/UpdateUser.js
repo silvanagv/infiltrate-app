@@ -65,7 +65,7 @@ class AllResumes extends Component {
 function mapStateToProps(state, ownProps){
   if (state.users.length > 0){
     const user = state.users.find((user) => {
-      return user.id == ownProps.params.id
+      return parseInt(user.id, 10) === parseInt(ownProps.params.id, 10)
     })
     return {user: user}
   } else {

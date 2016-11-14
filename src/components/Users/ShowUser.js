@@ -14,6 +14,7 @@ class ShowUser extends Component {
 
   getUser(){
     let user = this.props.user
+    console.log(user)
     let boundItemClick = this.handleDeleteUser.bind(this, user);
       return <div key={user.id}><h4>{user.id}</h4>
         <h3>{user.name}</h3>
@@ -48,7 +49,7 @@ class ShowUser extends Component {
 function mapStateToProps(state, ownProps){
   if (state.users.length > 0){
     const user = state.users.find((user) => {
-      return user.id == ownProps.params.id
+      return parseInt(user.id, 10) === parseInt(ownProps.params.id, 10)
     })
     return {user: user}
   } else {

@@ -37,7 +37,7 @@ class ShowEducation extends Component {
 function mapStateToProps(state, ownProps){
   if (state.educations.length > 0){
     const education = state.educations.find((education) => {
-      return education.id == ownProps.params.id
+      return parseInt(education.id, 10) === parseInt(ownProps.params.id, 10)
     })
     return {education: education}
   } else {
