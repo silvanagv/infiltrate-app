@@ -4,6 +4,8 @@ export default function worksReducer(state=[], action) {
       return action.payload;
     case 'ADD_WORK':
       return [...state, action.payload]
+      case 'UPDATE_WORK':
+      return [...state]
     default:
       return state;
   }

@@ -28,6 +28,34 @@ router.get('/users', function(req, res) {
   });
 });
 
+//update user record
+router.put('/users/:id', function(req, res){
+  models.User.find({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(user){
+    if(user){
+      user.updateAttributes(req.body.user).then(function(user){
+        res.json(user)
+      })
+    }
+  })
+})
+
+//delete user record
+router.delete('/users/:id', function(req, res){
+  console.log(req.params.id)
+  models.User.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(user){
+    res.json(user)
+  })
+})
+
+
 // get all education records
 router.get('/educations', function(req, res) {
   models.Education.findAll({
@@ -39,6 +67,7 @@ router.get('/educations', function(req, res) {
 
 // add new education record
 router.post('/educations', function(req, res) {
+  debugger;
   models.Education.create(req.body.education).then(function(education) {
     res.json(education);
   });
@@ -56,28 +85,23 @@ router.post('/educations', function(req, res) {
   })
 
 //update education record
-  router.put('/education/:id', function(req, res){
-    models.Education.find({
-      where: {
-        id: req.params.id
-      }
-    }).then(function(education){
-      if(education){
-        education.updateAttributes({
-          institutionName: req.body.institutionName,
-          qualification: req.body.qualification,
-          startDate: req.body.startDate,
-          endDate: req.body.endDate,
-          UserId: req.body.UserId
-        }).then(function(education){
-          res.send(education)
-        })
-      }
-    })
+router.put('/educations/:id', function(req, res){
+  models.Education.find({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(education){
+    if(education){
+      education.updateAttributes(req.body.education).then(function(education){
+        res.json(education)
+      })
+    }
   })
+})
 
   //delete education record
-  router.delete('/education/:id', function(req, res){
+  router.delete('/educations/:id', function(req, res){
+    console.log(req.params.id)
     models.Education.destroy({
       where: {
         id: req.params.id
@@ -115,29 +139,22 @@ router.post('/educations', function(req, res) {
     })
 
   //update work record
-    router.put('/work/:id', function(req, res){
+    router.put('/works/:id', function(req, res){
       models.Work.find({
         where: {
           id: req.params.id
         }
       }).then(function(work){
         if(work){
-          work.updateAttributes({
-            company: req.body.company,
-            companyUrl: req.body.companyUrl,
-            startDate: req.body.startDate,
-            endDate: req.body.endDate,
-            responsibilities: req.body.responsibilities,
-            UserId: req.body.UserId
-          }).then(function(work){
-            res.send(work)
+          work.updateAttributes(req.body.work).then(function(work){
+            res.json(work)
           })
         }
       })
     })
 
     //delete work record
-    router.delete('/work/:id', function(req, res){
+    router.delete('/works/:id', function(req, res){
       models.Work.destroy({
         where: {
           id: req.params.id
@@ -155,7 +172,6 @@ router.post('/educations', function(req, res) {
         res.json(skills);
       });
     });
-
 
     // add new skill
     router.post('/skills', function(req, res) {
@@ -176,27 +192,22 @@ router.post('/educations', function(req, res) {
       })
 
     //update skill
-      router.put('/skill/:id', function(req, res){
-        models.Skill.find({
-          where: {
-            id: req.params.id
-          }
-        }).then(function(skill){
-          if(skill){
-            skill.updateAttributes({
-              name: req.body.name,
-              type: req.body.type,
-              levelOfProficiency: req.body.levelOfProficiency,
-              UserId: req.body.UserId
-            }).then(function(skill){
-              res.send(skill)
-            })
-          }
-        })
+    router.put('/skills/:id', function(req, res){
+      models.Skill.find({
+        where: {
+          id: req.params.id
+        }
+      }).then(function(skill){
+        if(skill){
+          skill.updateAttributes(req.body.skill).then(function(skill){
+            res.json(skill)
+          })
+        }
       })
+    })
 
       //delete skill
-      router.delete('/skill/:id', function(req, res){
+      router.delete('/skills/:id', function(req, res){
         models.Skill.destroy({
           where: {
             id: req.params.id

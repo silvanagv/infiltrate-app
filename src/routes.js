@@ -7,21 +7,28 @@ import NotFound from './components/NotFound';
 
 import CreateUser from './components/Users/CreateUser';
 import ShowUser from './components/Users/ShowUser';
-
-import CreateWork from './components/Resumes/CreateWork';
-import CreateEducation from './components/Resumes/CreateEducation';
-import CreateSkill from './components/Resumes/CreateSkill';
+import UpdateUser from './components/Users/UpdateUser';
+import AllUsers from './components/Users/AllUsers';
 
 
 import CreateResume from './components/Resumes/CreateResume';
 import ShowResume from './components/Resumes/ShowResume';
 import UpdateResume from './components/Resumes/UpdateResume';
-import DeleteResume from './components/Resumes/DeleteResume';
 import AllResumes from './components/Resumes/AllResumes';
 
+import CreateSkill from './components/Resumes/CreateSkill';
+import ShowSkill from './components/Resumes/ShowSkill';
+import UpdateSkill from './components/Resumes/UpdateSkill';
+
+import CreateEducation from './components/Resumes/CreateEducation';
+import ShowEducation from './components/Resumes/ShowEducation';
+import UpdateEducation from './components/Resumes/UpdateEducation';
+
+import CreateWork from './components/Resumes/CreateWork';
+import ShowWork from './components/Resumes/ShowWork';
+import UpdateWork from './components/Resumes/UpdateWork';
+
 import RootPath from './components/Root';
-
-
 
 export default(
   <Route path="/" component={App} >
@@ -30,17 +37,28 @@ export default(
     <Route path="/about" component={About} />
     <Route path="/signup" component={CreateUser} />
     <Route path="/users/:id" component={ShowUser} />
+    <Route path="/users/:id/edit" component={UpdateUser} />
+    <Route path="/users" component={AllUsers} />
 
     <Route path="/jobs/new" component={CreateWork} />
     <Route path="/skills/new" component={CreateSkill} />
     <Route path="/educations/new" component={CreateEducation} />
 
-
     <Route path="/resumes/new" component={CreateResume} />
     <Route path="/resumes/:id" component={ShowResume} />
     <Route path="/resume/:id" component={UpdateResume} />
-    <Route path="/resume/:id" component={DeleteResume} />
     <Route path="/resumes" component={AllResumes} />
+
+    <Route path="/skills/:id" component={ShowSkill} />
+    <Route path="/skills/:id/edit" component={UpdateSkill} />
+
+
+    <Route path="/educations/:id" component={ShowEducation} />
+    <Route path="/educations/:id/edit" component={UpdateEducation} />
+
+    <Route path="/works/:id" component={ShowWork} />
+    <Route path="/works/:id/edit" component={UpdateWork} />
+
 
     <Route path="*" component={NotFound} />
 

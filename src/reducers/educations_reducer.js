@@ -3,7 +3,9 @@ export default function educationsReducer(state=[], action) {
     case 'FETCH_EDUCATIONS':
       return action.payload;
     case 'ADD_EDUCATION':
-      return [...state, action.payload]
+      return [...state, action.payload];
+    case 'UPDATE_EDUCATION':
+      return [...state]
     default:
       return state;
   }

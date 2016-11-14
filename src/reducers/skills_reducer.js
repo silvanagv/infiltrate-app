@@ -3,7 +3,9 @@ export default function skillsReducer(state=[], action) {
     case 'FETCH_SKILLS':
       return action.payload;
     case 'ADD_SKILL':
-      return [...state, action.payload]
+      return [...state, action.payload];
+    case 'UPDATE_SKILL':
+      return [...state]
     default:
       return state;
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import * as actions from '../../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 import './style.css';
 
@@ -24,6 +25,8 @@ class CreateResume extends React.Component {
       UserId: this.refs.UserId.value
     }
     this.props.actions.addWork(newWork)
+    browserHistory.push('/educations/new')
+    //import browser history obj from react router (use push method to redirect to new form)
   }
 
   render() {
@@ -37,8 +40,8 @@ class CreateResume extends React.Component {
           <input ref="companyUrl" placeholder="Company Website" />
           <input ref="responsibilities" placeholder="Responsibilities" />
           <input ref="UserId" type="number" placeholder="UserId" />
-          <input type="date" ref="startDate" placeholder="Start Date" />
-          <input type="date" ref="endDate" placeholder="End Date" />
+          <input type="date" ref="startDate" placeholder="Start Date" required/>
+          <input type="date" ref="endDate" placeholder="End Date" required/>
           <input type='submit'/>
         </form>
 

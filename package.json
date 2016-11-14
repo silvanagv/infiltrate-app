@@ -29,6 +29,7 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
+    "node-inspector": "^0.12.8",
     "react-scripts": "^0.7.0"
   }
 }

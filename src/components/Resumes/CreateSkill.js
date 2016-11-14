@@ -2,6 +2,7 @@ import React from 'react';
 import * as actions from '../../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 import './style.css';
 
@@ -13,13 +14,15 @@ class CreateSkill extends React.Component {
 
   newSkillHandler(event){
     event.preventDefault()
-
+    debugger;
     const newSkill = {
       name: this.refs.name.value,
       type: this.refs.type.value,
       levelOfProficiency: this.refs.levelOfProficiency.value
     }
     this.props.actions.addSkill(newSkill)
+    browserHistory.push('/resumes')
+
   }
 
   render() {
