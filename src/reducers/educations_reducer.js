@@ -5,7 +5,9 @@ export default function educationsReducer(state=[], action) {
     case 'ADD_EDUCATION':
       return [...state, action.payload];
     case 'UPDATE_EDUCATION':
-      return [...state]
+      return [...state];
+    case 'DELETE_EDUCATION':
+      return state.filter(education => education.id !== action.payload);
     default:
       return state;
   }

@@ -4,8 +4,10 @@ export default function worksReducer(state=[], action) {
       return action.payload;
     case 'ADD_WORK':
       return [...state, action.payload]
-      case 'UPDATE_WORK':
-      return [...state]
+    case 'UPDATE_WORK':
+      return [...state];
+    case 'DELETE_WORK':
+      return state.filter(work => work.id !== action.payload);
     default:
       return state;
   }

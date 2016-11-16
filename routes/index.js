@@ -14,7 +14,8 @@ var models = require('../models/index')
 
 //create user
 router.post('/users', function(req, res) {
-  models.User.create(req.body.user).then(function(user) {
+  models.User.create(req.body.user)
+  .then(function(user) {
     res.json(user);
   });
 });
@@ -24,7 +25,7 @@ router.get('/users', function(req, res) {
   models.User.findAll({
     include: [models.Education, models.Work, models.Skill]
   }).then(function(education) {
-    res.json(education);
+    res.json(education)
   });
 });
 
@@ -70,7 +71,7 @@ router.post('/educations', function(req, res) {
   debugger;
   models.Education.create(req.body.education).then(function(education) {
     res.json(education);
-  });
+  })
 });
 
 //get single education record
@@ -228,10 +229,15 @@ router.put('/educations/:id', function(req, res){
 
       //add new skilluser
       router.post('/skillusers', function(req, res){
-        models.SkillUser.create({
-          SkillId: req.body.SkillId,
-          UserId: req.body.UserId
-        }).then(function(skilluser){
+        models.SkillUser.create(req.body.skilluser)
+        .then(function(skilluser){
+          return models.User.find({
+            where: {
+              id: skilluser.UserId
+            }, include: [models.Skill]
+          })
+        })
+        .then(function(skilluser){
           res.json(skilluser)
         })
       })

@@ -17,7 +17,6 @@ class AllResumes extends Component {
     return this.props.works.map(work => {
       let boundItemClick = this.handleDeleteWork.bind(this, work);
       return <div key={work.id}>
-        <h3>{work.company}</h3>
         <Link to={`/works/${work.id}`}>{work.id}: {work.title}</Link>
         <p id={work.id} onClick={boundItemClick}>Delete</p></div>
     })

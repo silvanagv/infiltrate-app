@@ -30,7 +30,6 @@ export function fetchUsers(){
   return {type: 'FETCH_USERS', payload: users}
 }
 
-
 export function deleteUser(id){
   const url = `http://localhost:8080/users/${id}`
   fetch(url,{
@@ -66,7 +65,6 @@ export function updateWork(updatedWorkFromForm){
   .then(updatedWorkPayload => updatedWorkPayload)
   return {type: 'UPDATE_WORK', payload: updatedWorkFromApi}
 }
-
 
 export function fetchWorks(){
   const works = fetch('http://localhost:8080/works').then(response => response.json())
@@ -136,6 +134,7 @@ export function addSkill(newSkillFromForm){
     body: JSON.stringify({skill: newSkillFromForm})
   }).then(response => response.json())
   .then(newSkillPayload => newSkillPayload )
+
   return {type: 'ADD_SKILL', payload: newSkillFromApi}
 }
 
@@ -153,7 +152,7 @@ export function deleteSkill(id){
   })
   .then(response => response.json())
   .then(skillPayload => skillPayload)
-  return {type: 'DELETE_SKILL'}
+  return {type: 'DELETE_SKILL', payload:id}
 }
 
 export function updateSkill(updatedSkillFromForm){
@@ -167,4 +166,17 @@ export function updateSkill(updatedSkillFromForm){
   }).then(response => response.json())
   .then(updatedSkillPayload => updatedSkillPayload)
   return {type: 'UPDATE_SKILL', payload: updatedSkillFromApi}
+}
+
+export function addSkillUser(newSkillUserFromForm){
+  const newSkillUserFromApi = fetch('http://localhost:8080/skillusers',{
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({skilluser: newSkillUserFromForm})
+  }).then(response => response.json())
+  .then(newSkillUserPayload => newSkillUserPayload )
+  return {type: 'ADD_SKILL_TO_USER', payload: newSkillUserFromApi}
 }

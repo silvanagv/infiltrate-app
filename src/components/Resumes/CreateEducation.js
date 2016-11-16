@@ -18,7 +18,8 @@ class CreateResume extends React.Component {
       institutionName: this.refs.institutionName.value,
       qualification: this.refs.qualification.value,
       startDate: this.refs.startDate.value,
-      endDate: this.refs.endDate.value
+      endDate: this.refs.endDate.value,
+      UserId: 12
     }
     this.props.actions.addEducation(newEducation)
     browserHistory.push('/skills/new')

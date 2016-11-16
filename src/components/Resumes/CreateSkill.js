@@ -9,25 +9,33 @@ import './style.css';
 class CreateSkill extends React.Component {
   constructor(props){
     super(props)
+    this.state = {latestUser: 9}
     this.newSkillHandler = this.newSkillHandler.bind(this)
   }
 
   newSkillHandler(event){
     event.preventDefault()
-    debugger;
     const newSkill = {
       name: this.refs.name.value,
       type: this.refs.type.value,
       levelOfProficiency: this.refs.levelOfProficiency.value
     }
-    this.props.actions.addSkill(newSkill)
-    browserHistory.push('/resumes')
-
+    this.setState({
+      latestUser: 2
+    }, function(){
+      console.log(this.state)
+      this.props.actions.addSkill(newSkill)
+      // const newSkillUser = {
+      //
+      // }
+      // this.props.actions.addSkillUser(newSkillUser)
+      browserHistory.push(`/resumes/${this.state.latestUser}`)
+    })
   }
 
   render() {
     return (
-      <div className="tiny">
+      <div>
         <h2>Create Skill</h2>
         <form onSubmit={this.newSkillHandler}>
           <input ref="name" placeholder="Name"/>
@@ -44,6 +52,8 @@ class CreateSkill extends React.Component {
 function mapDispatchToProps(dispatch){
   return {actions: bindActionCreators(actions, dispatch)}
 }
+
+
 
 
 

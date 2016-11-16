@@ -19,6 +19,7 @@ import AllResumes from './components/Resumes/AllResumes';
 import CreateSkill from './components/Resumes/CreateSkill';
 import ShowSkill from './components/Resumes/ShowSkill';
 import UpdateSkill from './components/Resumes/UpdateSkill';
+import AddSkill from './components/Resumes/CreateSkillUser';
 
 import CreateEducation from './components/Resumes/CreateEducation';
 import ShowEducation from './components/Resumes/ShowEducation';
@@ -43,6 +44,7 @@ export default(
     <Route path="/jobs/new" component={CreateWork} />
     <Route path="/skills/new" component={CreateSkill} />
     <Route path="/educations/new" component={CreateEducation} />
+    <Route path="/skills/add" component={AddSkill} />
 
     <Route path="/resumes/new" component={CreateResume} />
     <Route path="/resumes/:id" component={ShowResume} />
@@ -51,7 +53,6 @@ export default(
 
     <Route path="/skills/:id" component={ShowSkill} />
     <Route path="/skills/:id/edit" component={UpdateSkill} />
-
 
     <Route path="/educations/:id" component={ShowEducation} />
     <Route path="/educations/:id/edit" component={UpdateEducation} />

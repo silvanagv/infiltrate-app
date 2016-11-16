@@ -31,8 +31,7 @@ class CreateResume extends React.Component {
 
   render() {
     return (
-      <div className="tiny">
-
+      <div>
         <h2>Create Work</h2>
         <form onSubmit={this.newWorkHandler}>
           <input ref="title" placeholder="Title"/>
@@ -44,8 +43,6 @@ class CreateResume extends React.Component {
           <input type="date" ref="endDate" placeholder="End Date" required/>
           <input type='submit'/>
         </form>
-
-
     </div>
     );
   }

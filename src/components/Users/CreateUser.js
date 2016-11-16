@@ -8,12 +8,13 @@ import './style.css';
 class CreateUser extends Component {
   constructor(props){
     super(props)
+    this.state = {latestUser: 9}
     this.newUserHandler = this.newUserHandler.bind(this)
   }
 
   getSkills(){
     return this.props.skills.map(skill => {
-      return <div key={skill.id}> {skill.name}</div>
+      return <input key={skill.id}value={skill.name}/>
     })
   }
 
@@ -21,7 +22,6 @@ class CreateUser extends Component {
     event.preventDefault()
     const newUser = {
       username: this.refs.username.value,
-      admin: this.refs.admin.value,
       password: this.refs.password.value,
       name: this.refs.name.value,
       email: this.refs.email.value,
@@ -31,20 +31,23 @@ class CreateUser extends Component {
       linkedin: this.refs.linkedin.value,
       github: this.refs.github.value
     }
+    // this.props.actions.addUser(newUser)
+    // debugger;
+    // this.setState({
+    //   latestUser: 2
+    // })
+    // browserHistory.push('/resumes/9')
     this.props.actions.addUser(newUser)
-    browserHistory.push('/resumes')
+    browserHistory.push('/resumes/9')
   }
-
-
 
   render() {
     return (
       <div>
         <h1>Sign Up</h1>
+        <p>Hi there! Please enter a few details about yourself to start making resumes.</p>
         <form onSubmit={this.newUserHandler}>
           <input ref="username" type="text" placeholder="Username"/>
-          <label>Admin?</label>
-          <input ref="admin" type="checkbox" placeholder="Admin"/>
           <input ref="password" type="password" placeholder="Password"/>
           <input ref="name" type="text" placeholder="name"/>
           <input ref="email" type="text" placeholder="email"/>
@@ -55,8 +58,6 @@ class CreateUser extends Component {
           <input ref="github" type="text" placeholder="github"/>
           <input type='submit'/>
         </form>
-        <div>{this.getSkills()}</div>
-
       </div>
     );
   }

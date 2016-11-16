@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router'
 
 import './style.css';
 
@@ -11,7 +12,7 @@ export default class NotFound extends Component {
     return (
       <div>
         <h1>
-        Root
+        Welcome. Would you like to <Link to={`/signup`}>make an account</Link>? 
         </h1>
       </div>
     );
