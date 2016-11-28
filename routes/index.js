@@ -176,9 +176,18 @@ router.put('/educations/:id', function(req, res){
 
     // add new skill
     router.post('/skills', function(req, res) {
-      models.Skill.create(req.body.skill).then(function(skill) {
+      console.log("skill from form", req.body.skill)
+      models.Skill.create(req.body.skill)
+      .then(function(skill) {
+        var skilluser = {
+          SkillId: skill.dataValues.id,
+          UserId: skill.dataValues.UserId
+        }
+        models.SkillUser.create(skilluser)
+        console.log("skill from db",skill)
         res.json(skill);
       });
+
     });
 
     //get single skill

@@ -18,8 +18,8 @@ class ShowResume extends Component {
     let user = this.props.user
     let boundItemClick = this.handleDeleteUser.bind(this, user);
       return <div key={user.id}>
-        <h4>{user.email} | {user.phone} | {user.website} | linkedin.com/{user.linkedin} | github.com/{user.github}</h4>
-        <p id={user.id} onClick={boundItemClick}>Delete</p>
+        <h4>{user.email} | {user.phone} | <Link to={user.website}>{user.website}</Link> | <Link to={`linkedin.com/{user.linkedin}`}>linkedin.com/{user.linkedin}</Link> | github.com/{user.github}</h4>
+        <button id={user.id} onClick={boundItemClick}>Delete</button>
       </div>
   }
 
@@ -34,6 +34,7 @@ class ShowResume extends Component {
 
   getUserJobs(){
     let user = this.props.user
+    console.log(this.props)
     return user.Works.map( work => <div key={work.id}>
       <h3>{work.title}, {work.startDate} - {work.endDate}</h3>
       <h4>{work.company}</h4>
@@ -56,12 +57,12 @@ class ShowResume extends Component {
       <div>
         <h1>{this.props.user.name}</h1>
         {this.getUser()}
-        <Link to={`/users/${this.props.user.id}/edit`}>Update {this.props.user.title}</Link>
-        <h2>Experience</h2>
+        <Link to={`/users/${this.props.user.id}/edit`}><button>Update {this.props.user.title}</button> </Link><br />
+        <h2 className="inline-heading">Experience</h2>  <button><Link to={`/jobs/new`}>Add More</Link></button>
         <div>{this.getUserJobs()}</div>
-        <h2>Education</h2>
+        <h2 className="inline-heading">Education</h2> <button><Link to={`/educations/new`}>Add More</Link></button>
         <div>{this.getUserEducation()}</div>
-        <h2>Skills</h2>
+        <h2 className="inline-heading">Skills</h2> <button><Link to={`/skills/new`}>Add More</Link></button>
         <div>{this.getUserSkills()}</div>
       </div>
     );

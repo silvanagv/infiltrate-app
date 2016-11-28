@@ -8,7 +8,7 @@ import './style.css';
 class CreateUser extends Component {
   constructor(props){
     super(props)
-    this.state = {latestUser: 9}
+    this.state = {latestUserId: 9}
     this.newUserHandler = this.newUserHandler.bind(this)
   }
 
@@ -33,19 +33,18 @@ class CreateUser extends Component {
     }
     // this.props.actions.addUser(newUser)
     // debugger;
-    // this.setState({
-    //   latestUser: 2
-    // })
+    console.log(this.state.latestUserId)
     // browserHistory.push('/resumes/9')
     this.props.actions.addUser(newUser)
-    browserHistory.push('/resumes/9')
+
+     browserHistory.push('/jobs/new')
   }
 
   render() {
     return (
       <div>
         <h1>Sign Up</h1>
-        <p>Hi there! Please enter a few details about yourself to start making resumes.</p>
+        <p>Hi there! Please enter a few details to get started.</p>
         <form onSubmit={this.newUserHandler}>
           <input ref="username" type="text" placeholder="Username"/>
           <input ref="password" type="password" placeholder="Password"/>
@@ -63,9 +62,11 @@ class CreateUser extends Component {
   }
 }
 
+
 function mapStateToProps(state){
   return {
-    skills: state.skills
+    skills: state.skills,
+    users: state.users
     }
 }
 

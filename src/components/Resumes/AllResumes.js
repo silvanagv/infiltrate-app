@@ -14,29 +14,40 @@ class AllResumes extends Component {
   }
 
   getWorkHistory(){
-    return this.props.works.map(work => {
+    let jobs = this.props.works.sort(function(a,b){
+      return parseFloat(a.id) - parseFloat(b.id)
+    })
+
+    return jobs.map(work => {
       let boundItemClick = this.handleDeleteWork.bind(this, work);
       return <div key={work.id}>
-        <Link to={`/works/${work.id}`}>{work.id}: {work.title}</Link>
-        <p id={work.id} onClick={boundItemClick}>Delete</p></div>
+        <Link to={`/works/${work.id}`}>{work.id}: {work.title} </Link>
+        <button id={work.id} onClick={boundItemClick}>Delete</button></div>
     })
   }
 
   getEducationHistory(){
-    return this.props.educations.map(education => {
+    let educations = this.props.educations.sort(function(a,b){
+      return parseFloat(a.id) - parseFloat(b.id)
+    })
+    return educations.map(education => {
       let boundItemClick = this.handleDeleteEducation.bind(this, education);
       return <div key={education.id}>
-        <Link to={`/educations/${education.id}`}>{education.id}: {education.institutionName}</Link>
-      <p id={education.id} onClick={boundItemClick}>Delete</p></div>
+        <Link to={`/educations/${education.id}`}>{education.id}: {education.institutionName} </Link>
+      <button id={education.id} onClick={boundItemClick}>Delete</button></div>
     })
   }
 
   getSkills(){
-    return this.props.skills.map(skill => {
+    let skills = this.props.skills.sort(function(a,b){
+      return parseFloat(a.id) - parseFloat(b.id)
+    })
+
+    return skills.map(skill => {
       let boundItemClick = this.handleDeleteSkill.bind(this, skill);
       return <div key={skill.id}>
-        <Link to={`/skills/${skill.id}`}>{skill.id}: {skill.name}</Link>
-    <p id={skill.id} onClick={boundItemClick}>Delete</p></div>
+        <Link to={`/skills/${skill.id}`}>{skill.id}: {skill.name} </Link>
+    <button id={skill.id} onClick={boundItemClick}> Delete</button></div>
     })
   }
 

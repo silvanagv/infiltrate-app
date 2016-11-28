@@ -13,13 +13,15 @@ class CreateResume extends React.Component {
 
   newEducationHandler(event){
     event.preventDefault()
-
+    let sorted = this.props.users.sort(function(a,b){
+      return parseFloat(a.id) - parseFloat(b.id)
+    })
     const newEducation = {
       institutionName: this.refs.institutionName.value,
       qualification: this.refs.qualification.value,
       startDate: this.refs.startDate.value,
       endDate: this.refs.endDate.value,
-      UserId: 12
+      UserId: sorted[sorted.length-1].id
     }
     this.props.actions.addEducation(newEducation)
     browserHistory.push('/skills/new')
@@ -43,11 +45,16 @@ class CreateResume extends React.Component {
 }
 
 
+function mapStateToProps(state){
+  return {
+    skills: state.skills,
+    users: state.users
+    }
+}
+
 function mapDispatchToProps(dispatch){
   return {actions: bindActionCreators(actions, dispatch)}
 }
 
-
-
-const componentCreator = connect(null, mapDispatchToProps)
+const componentCreator = connect(mapStateToProps, mapDispatchToProps)
 export default componentCreator(CreateResume)

@@ -12,11 +12,19 @@ class AllUsers extends Component {
   }
 
   getUsers(){
-    return this.props.users.map(user => {
+    let sorted = this.props.users.sort(function(a,b){
+      return parseFloat(a.id) - parseFloat(b.id)
+    })
+
+    return sorted.map(user => {
       let boundItemClick = this.handleDeleteUser.bind(this, user);
       return <div key={user.id}>
-        <Link to={`/users/${user.id}`}>{user.id}: {user.name}</Link>
-    <p id={user.id} onClick={boundItemClick}>Delete</p></div>
+        <Link to={`/users/${user.id}`}>{user.id}: {user.name} </Link>
+
+    <button id={user.id} onClick={boundItemClick}>Delete</button>
+      <Link to={`/resumes/${user.id}`}><button id={user.id}>View Resume</button></Link>
+
+    </div>
     })
   }
 

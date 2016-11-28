@@ -15,6 +15,11 @@ class CreateResume extends React.Component {
   newWorkHandler(event){
     event.preventDefault()
 
+    let sorted = this.props.users.sort(function(a,b){
+      return parseFloat(a.id) - parseFloat(b.id)
+    })
+    console.log(`sorted = ${sorted[sorted.length-1].name}`)
+    console.log(this.props.users)
     const newWork = {
       title: this.refs.title.value,
       company: this.refs.company.value,
@@ -22,7 +27,7 @@ class CreateResume extends React.Component {
       responsibilities: this.refs.responsibilities.value,
       startDate: this.refs.startDate.value,
       endDate: this.refs.endDate.value,
-      UserId: this.refs.UserId.value
+      UserId: sorted[sorted.length-1].id
     }
     this.props.actions.addWork(newWork)
     browserHistory.push('/educations/new')
@@ -38,7 +43,6 @@ class CreateResume extends React.Component {
           <input ref="company" placeholder="Company" />
           <input ref="companyUrl" placeholder="Company Website" />
           <input ref="responsibilities" placeholder="Responsibilities" />
-          <input ref="UserId" type="number" placeholder="UserId" />
           <input type="date" ref="startDate" placeholder="Start Date" required/>
           <input type="date" ref="endDate" placeholder="End Date" required/>
           <input type='submit'/>
@@ -49,11 +53,18 @@ class CreateResume extends React.Component {
 }
 
 
+function mapStateToProps(state){
+  return {
+    skills: state.skills,
+    users: state.users
+    }
+}
+
 function mapDispatchToProps(dispatch){
   return {actions: bindActionCreators(actions, dispatch)}
 }
 
 
 
-const componentCreator = connect(null, mapDispatchToProps)
+const componentCreator = connect(mapStateToProps, mapDispatchToProps)
 export default componentCreator(CreateResume)

@@ -15,22 +15,28 @@ class CreateSkill extends React.Component {
 
   newSkillHandler(event){
     event.preventDefault()
+
+    let sorted = this.props.users.sort(function(a,b){
+      return parseFloat(a.id) - parseFloat(b.id)
+    })
+    console.log(`sorted equals ${sorted[sorted.length-1]}`)
     const newSkill = {
       name: this.refs.name.value,
       type: this.refs.type.value,
-      levelOfProficiency: this.refs.levelOfProficiency.value
+      levelOfProficiency: this.refs.levelOfProficiency.value,
+      UserId: sorted[sorted.length-1].id
     }
-    this.setState({
-      latestUser: 2
-    }, function(){
-      console.log(this.state)
-      this.props.actions.addSkill(newSkill)
-      // const newSkillUser = {
-      //
-      // }
-      // this.props.actions.addSkillUser(newSkillUser)
-      browserHistory.push(`/resumes/${this.state.latestUser}`)
-    })
+    console.log(newSkill)
+
+    this.props.actions.addSkill(newSkill)
+    // console.log(this.props.skills)
+    // const newSkillUser = {
+    //   UserId: sorted[sorted.length-1].id,
+    //   SkillId: this.props.skills[this.props.skills.length-1].id
+    // }
+    //
+    //   this.props.actions.addSkillUser(newSkillUser)
+      browserHistory.push(`/resumes/${sorted[sorted.length-1].id}`)
   }
 
   render() {
@@ -48,14 +54,18 @@ class CreateSkill extends React.Component {
   }
 }
 
+function mapStateToProps(state){
+  return {
+    works: state.works,
+    skills: state.skills,
+    educations: state.educations,
+    users: state.users
+    }
+}
 
 function mapDispatchToProps(dispatch){
   return {actions: bindActionCreators(actions, dispatch)}
 }
 
-
-
-
-
-const componentCreator = connect(null, mapDispatchToProps)
+const componentCreator = connect(mapStateToProps, mapDispatchToProps)
 export default componentCreator(CreateSkill)

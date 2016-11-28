@@ -29,6 +29,11 @@ import CreateWork from './components/Resumes/CreateWork';
 import ShowWork from './components/Resumes/ShowWork';
 import UpdateWork from './components/Resumes/UpdateWork';
 
+import test from './components/Education/index.js';
+import testCreateEducation from './components/Education/CreateEducation.js';
+import testShowEducation from './components/Education/ShowEducation.js'
+
+
 import RootPath from './components/Root';
 
 export default(
@@ -60,6 +65,10 @@ export default(
     <Route path="/works/:id" component={ShowWork} />
     <Route path="/works/:id/edit" component={UpdateWork} />
 
+    <Route path="/snail" component={test}>
+      <Route path="/test" component={testCreateEducation} />
+      <Route path="/testshow" component={testShowEducation} />
+    </Route>
 
     <Route path="*" component={NotFound} />
 

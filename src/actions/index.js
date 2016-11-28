@@ -134,7 +134,12 @@ export function addSkill(newSkillFromForm){
     body: JSON.stringify({skill: newSkillFromForm})
   }).then(response => response.json())
   .then(newSkillPayload => newSkillPayload )
-
+  // const newSkillUser = {
+  //   UserId: 2,
+  //   SkillId: 36
+  // }
+  // addSkillUser(newSkillUser)
+//add skilluser here??
   return {type: 'ADD_SKILL', payload: newSkillFromApi}
 }
 
