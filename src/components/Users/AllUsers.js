@@ -21,7 +21,9 @@ class AllUsers extends Component {
       return <div key={user.id}>
         <Link to={`/users/${user.id}`}>{user.id}: {user.name} </Link>
 
-    <button id={user.id} onClick={boundItemClick}>Delete</button>
+    <button id={user.id} onClick={boundItemClick}>Delete User</button>
+      <Link to={`/users/${user.id}`}><button id={user.id}>Edit User</button></Link>
+
       <Link to={`/resumes/${user.id}`}><button id={user.id}>View Resume</button></Link>
 
     </div>
