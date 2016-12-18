@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import * as actions from '../../actions';
 import  { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import './style.css';
 import { browserHistory, Link } from 'react-router';
 
 class ShowUser extends Component {

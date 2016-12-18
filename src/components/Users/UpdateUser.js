@@ -3,7 +3,6 @@ import * as actions from '../../actions';
 import  { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import './style.css';
 
 class AllResumes extends Component {
   constructor(props){
