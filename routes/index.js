@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 
-/* GET home page. */
+/* get homepage */
 router.get('/', function(req, res, next) {
   res.json("hello");
 });
@@ -20,7 +20,7 @@ router.post('/users', function(req, res) {
   });
 });
 
-// get all user records
+// get all users
 router.get('/users', function(req, res) {
   models.User.findAll({
     include: [models.Education, models.Work, models.Skill]
@@ -44,7 +44,7 @@ router.put('/users/:id', function(req, res){
   })
 })
 
-//delete user record
+//delete user
 router.delete('/users/:id', function(req, res){
   console.log(req.params.id)
   models.User.destroy({
